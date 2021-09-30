@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Counter from './Counter';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state={
+      data : [
+        { id: 1, value: 0 },
+        { id: 2, value: 0 },
+        { id: 3, value: 0 }
+      ]
+    }
+  }
+
+  onIncrement = () => {
+      this.setState({
+        data: this.state.data.map(val => val.value + 1)
+      })
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.data.map(counter => ( 
+          <Counter 
+            onClick={this.onIncrement}
+            key={counter.id} 
+            value={counter.value} 
+            />
+        ))}
+      </div>
+    );
+  }
 }
 
-export default App;
+export default App
