@@ -14,20 +14,18 @@ class App extends Component {
     }
   }
 
-  onIncrement = () => {
-      this.setState({
-        data: this.state.data.map(val => val.value + 1)
-      })
+  changeValue = () =>{
+    console.log('clicked')
   }
-
   render() {
     return (
       <div>
         {this.state.data.map(counter => ( 
           <Counter 
-            onClick={this.onIncrement}
             key={counter.id} 
+            
             value={counter.value} 
+            changeValue={this.changeValue}
             />
         ))}
       </div>
