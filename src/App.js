@@ -10,6 +10,7 @@ class App extends React.Component {
             { id: 2, value: 0 },
             { id: 3, value: 0 },
          ],
+         
       };
    }
 
@@ -19,6 +20,7 @@ class App extends React.Component {
          data: prev.data.map((item) =>
             item.id === id ? { ...item, value: item.value + 1 } : item
          ),
+         
       }));
    };
 
@@ -33,13 +35,15 @@ class App extends React.Component {
 
    addCounter = () => {
       this.setState((prev) => ({
-        ...prev,
-         data: [...prev.data, {id: prev.data.length + 1, value: 0}],
-        //  data: [...prev.data, {id: prev.data.length + 1, value: 0})]
+         ...prev,
+         data: [...prev.data, { id: prev.data.length + 1, value: 0 }],
       }));
    };
 
+   
    render() {
+     const total = this.state.data.reduce((acc, cur) => acc + cur.value, 0);
+     
       return (
          <div>
             {this.state.data.map((counter) => (
@@ -52,6 +56,7 @@ class App extends React.Component {
                />
             ))}
             <button onClick={this.addCounter}>Add counter</button>
+            <p>{total}</p>
          </div>
       );
    }
